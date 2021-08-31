@@ -55,7 +55,7 @@ ENV_FILE_PATH=tests/fixtures/multiple.env \
 ::set-output name=KEY3::2.34
 ```
 
-A [working example workflow][2] shows this in use.
+A [working example workflow][2] shows how you might use this in your own workflow.
 
 [1]: https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#setting-an-output-parameter
 [2]: https://github.com/smartassert/bash-read-env-file/blob/main/.github/workflows/example.yml
