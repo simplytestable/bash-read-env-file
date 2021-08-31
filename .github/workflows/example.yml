@@ -31,6 +31,7 @@ jobs:
           ENV_FILE_PATH: ./tests/fixtures/multiple.env
         run: |
           ls -la
+          ls -la vendor
           ./src/read-env-file-ga.sh
 
       - name: Output values read in previous step
