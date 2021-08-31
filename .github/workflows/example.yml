@@ -22,13 +22,16 @@ jobs:
         uses: actions/checkout@v2
         with:
           repository: smartassert/bash-read-env-file
+          path: vendor
           ref: main
 
       - name: Read env file
         id: read-env-file
         env:
           ENV_FILE_PATH: ./tests/fixtures/multiple.env
-        run: ./src/read-env-file-ga.sh
+        run: |
+          ls -la
+          ./src/read-env-file-ga.sh
 
       - name: Output values read in previous step
         env:
