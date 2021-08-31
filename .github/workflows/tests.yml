@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  bats:
+    name: Bats unit tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install bats
+        working-directory: ./tests
+        run: npm install
+
+      - name: Run
+        working-directory: ./tests
+        run: npm test
