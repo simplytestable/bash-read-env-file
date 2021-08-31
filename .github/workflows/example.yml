@@ -25,8 +25,7 @@ jobs:
         id: read-env-file
         env:
           ENV_FILE_PATH: ./tests/fixtures/multiple.env
-          OUTPUT_TEMPLATE: "::set-output name={{ key }}::{{ value }}"
-        run: ./src/read-env-file.sh
+        run: ./src/read-env-file-ga.sh
 
       - name: Output values read in previous step
         env:

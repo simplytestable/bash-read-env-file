@@ -11,7 +11,7 @@ main() {
   bash "${BATS_TEST_DIRNAME}/../src/read-env-file.sh"
 }
 
-@test "empty file" {
+@test "read-env-file: empty file" {
   ENV_FILE_PATH="${fixtures_relative_path}/empty.env" \
   run main
 
@@ -19,7 +19,7 @@ main() {
   assert_output ""
 }
 
-@test "single-item file" {
+@test "read-env-file: single-item file" {
   ENV_FILE_PATH="${fixtures_relative_path}/single.env" \
   run main
 
@@ -27,7 +27,7 @@ main() {
   assert_output "KEY1=string"
 }
 
-@test "multi-item file" {
+@test "read-env-file: multi-item file" {
   ENV_FILE_PATH="${fixtures_relative_path}/multiple.env" \
   run main
 
@@ -37,7 +37,7 @@ KEY2=12
 KEY3=2.34"
 }
 
-@test "multi-item file with blank lines between items" {
+@test "read-env-file: multi-item file with blank lines between items" {
   ENV_FILE_PATH="${fixtures_relative_path}/multiple-with-blank-lines.env" \
   run main
 
@@ -47,7 +47,7 @@ KEY2=12
 KEY3=2.34"
 }
 
-@test "multi-item file and github action 'set output' output template" {
+@test "read-env-file: multi-item file and github action 'set output' output template" {
   ENV_FILE_PATH="${fixtures_relative_path}/multiple.env" \
   OUTPUT_TEMPLATE="::set-output name={{ key }}::{{ value }}" \
   run main
