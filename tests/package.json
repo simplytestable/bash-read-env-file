@@ -4,6 +4,8 @@
   },
   "devDependencies": {
     "bats": "^1.4.1",
-    "bats-assert": "^2.0.0"
+    "bats-assert": "github:bats-core/bats-assert",
+    "bats-file": "github:bats-core/bats-file",
+    "bats-support": "github:bats-core/bats-support"
   }
 }
