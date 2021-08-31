@@ -1,0 +1,55 @@
+name: Example Read/Output/Access Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-latest
+    outputs:
+      first-item: ${{ steps.read-env-file.outputs.KEY1 }}
+      second-item: ${{ steps.read-env-file.outputs.KEY2 }}
+      third-item: ${{ steps.read-env-file.outputs.KEY3 }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Read env file
+        id: read-env-file
+        env:
+          ENV_FILE_PATH: ./tests/fixtures/multiple.env
+          OUTPUT_TEMPLATE: "::set-output name={{ key }}::{{ value }}"
+        run: ./src/read-env-file.sh
+
+      - name: Output values read in previous step
+        env:
+          KEY1: ${{ steps.read-env-file.outputs.KEY1 }}
+          KEY2: ${{ steps.read-env-file.outputs.KEY2 }}
+          KEY3: ${{ steps.read-env-file.outputs.KEY3 }}
+        run: |
+          echo "KEY1: $KEY1"
+          echo "KEY2: $KEY2"
+          echo "KEY3: $KEY3"
+
+  use-read-values:
+    needs: setup
+    name: Use
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Output values read in previous job
+        env:
+          KEY1: ${{ needs.setup.outputs.first-item }}
+          KEY2: ${{ needs.setup.outputs.second-item }}
+          KEY3: ${{ needs.setup.outputs.third-item }}
+        run: |
+          echo "KEY1: $KEY1"
+          echo "KEY2: $KEY2"
+          echo "KEY3: $KEY3"
