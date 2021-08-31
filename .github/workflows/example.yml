@@ -20,6 +20,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          repository: smartassert/bash-read-env-file
+          ref: main
 
       - name: Read env file
         id: read-env-file
