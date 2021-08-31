@@ -28,7 +28,7 @@ jobs:
       - name: Read env file
         id: read-env-file
         env:
-          ENV_FILE_PATH: ./tests/fixtures/multiple.env
+          ENV_FILE_PATH: ./bash-read-env-file/tests/fixtures/multiple.env
         run: ./bash-read-env-file/src/read-env-file-ga.sh
 
       - name: Output values read in previous step
